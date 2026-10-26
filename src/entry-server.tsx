@@ -8,7 +8,7 @@ export { getMeta } from './lib/seo'
 export { SITE_URL } from './lib/site'
 
 /** Todas as rotas que devem virar HTML estático no build. */
-export const routes = ['/', ...projects.map((p) => `/projetos/${p.slug}`)]
+export const routes = ['/', '/projetos', ...projects.map((p) => `/projetos/${p.slug}`)]
 
 /** Renderiza a árvore React para HTML em uma dada rota. */
 export function render(pathname: string) {

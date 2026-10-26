@@ -6,6 +6,7 @@ import WhatsAppFab from './components/WhatsAppFab'
 import Home from './pages/Home'
 import ProjectDetail from './pages/ProjectDetail'
 import AllProjects from './pages/AllProjects'
+import NotFound from './pages/NotFound'
 import { useSeo } from './lib/seo'
 
 /** Vai para a âncora da URL (ex.: /#contato) ou para o topo a cada navegação. */
@@ -36,6 +37,7 @@ export default function AppRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/projetos" element={<AllProjects />} />
           <Route path="/projetos/:slug" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

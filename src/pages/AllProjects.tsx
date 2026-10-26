@@ -1,56 +1,29 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 import ProjectCard from '../components/ProjectCard'
+import Reveal from '../components/Reveal'
+import SectionHeading from '../components/SectionHeading'
+import BackLink from '../components/BackLink'
 
 export default function AllProjects() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible')
-            observer.unobserve(e.target)
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-    const targets = document.querySelectorAll('.animate-on-scroll')
-    targets.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <div className="detail-page">
-      <div className="detail-hero">
-        <div className="container">
-          <div className="detail-back">
-            <Link to="/" className="btn btn-ghost" style={{ fontSize: '0.88rem', padding: '8px 18px' }}>
-              ← Voltar ao início
-            </Link>
-          </div>
+    <section className="pt-28 pb-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <BackLink to="/">Voltar ao início</BackLink>
 
-          <span className="section-label">Portfólio</span>
-          <h1 className="detail-title">Todos os projetos</h1>
-          <p className="detail-short">
-            <strong style={{ color: 'var(--primary)', fontFamily: 'var(--font-heading)', fontSize: '1.5rem' }}>
-              {projects.length}
-            </strong>{' '}
-            {projects.length === 1 ? 'projeto desenvolvido' : 'projetos desenvolvidos'} — cada um resultado de uma parceria real.
-          </p>
+        <SectionHeading as="h1" label="Portfólio" title="Todos os projetos">
+          <strong className="font-heading text-primary">{projects.length}</strong>{' '}
+          {projects.length === 1 ? 'projeto desenvolvido' : 'projetos desenvolvidos'}, cada um resultado de uma
+          parceria real.
+        </SectionHeading>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <Reveal key={project.slug} delay={(i % 3) * 100}>
+              <ProjectCard project={project} index={i} />
+            </Reveal>
+          ))}
         </div>
       </div>
-
-      <section className="section">
-        <div className="container">
-          <div className="projects-grid">
-            {projects.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
-    </div>
+    </section>
   )
 }

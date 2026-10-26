@@ -7,6 +7,14 @@ const OG_IMAGE = `${SITE_URL}/logo.png`
 
 /** Resolve título, descrição e caminho canônico de uma rota. */
 export function getMeta(pathname = '/') {
+  if (pathname.replace(/\/$/, '') === '/projetos') {
+    return {
+      title: `Projetos | ${SITE_NAME}`,
+      description: 'Conheça os projetos desenvolvidos pela Rogab Solutions: sites, plataformas web e soluções sob medida.',
+      path: '/projetos',
+      image: OG_IMAGE,
+    }
+  }
   if (pathname.startsWith('/projetos/')) {
     const slug = pathname.replace('/projetos/', '').replace(/\/$/, '')
     const project = projects.find((p) => p.slug === slug)
