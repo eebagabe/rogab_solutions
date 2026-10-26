@@ -4,7 +4,8 @@ import AppRoutes from './AppRoutes'
 import { ThemeProvider } from './lib/theme'
 import { projects } from './data/projects'
 
-export { getMeta, SITE_URL } from './lib/seo'
+export { getMeta } from './lib/seo'
+export { SITE_URL } from './lib/site'
 
 /** Todas as rotas que devem virar HTML estático no build. */
 export const routes = ['/', ...projects.map((p) => `/projetos/${p.slug}`)]

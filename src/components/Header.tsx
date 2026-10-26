@@ -1,103 +1,103 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import logo from '../assets/logo.png'
+import { NAV_LINKS } from '../lib/site'
 import { useTheme } from '../lib/theme'
-
-const SHOW_CONTACT = true
+import { button } from '../lib/ui'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const navigate = useNavigate()
   const location = useLocation()
-  const { theme, toggle } = useTheme()
+  const { toggle } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
+    onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location])
+  useEffect(() => setMenuOpen(false), [location.key])
 
-  const scrollToSection = (id: string) => {
-    setMenuOpen(false)
-    if (location.pathname !== '/') {
-      navigate('/')
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+  useEffect(() => {
+    if (!menuOpen) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setMenuOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [menuOpen])
+
+  const solid = scrolled || menuOpen
 
   return (
-    <header className={`header${scrolled ? ' scrolled' : ''}`}>
-      <div className="container header-inner">
-        <a
-          className="logo"
-          href="/"
-          onClick={(e) => { e.preventDefault(); navigate('/') }}
-        >
-          <img src={logo} alt="Rogab Solutions" className="logo-img" />
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        solid ? 'border-b border-border bg-bg/80 shadow-sm backdrop-blur-xl' : 'border-b border-transparent'
+      }`}
+    >
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
+        <Link to="/" className="flex items-center gap-2.5 font-heading text-lg font-bold text-primary">
+          <img src={logo} alt="" className="size-9 rounded-lg object-contain" />
           Rogab Solutions
-        </a>
+        </Link>
 
-        <div className="header-end">
-          <nav className={`nav-links${menuOpen ? ' open' : ''}`}>
-            {[
-              { id: 'sobre',    label: 'Sobre'    },
-              { id: 'servicos', label: 'Serviços' },
-              { id: 'projetos', label: 'Projetos' },
-              ...(SHOW_CONTACT ? [{ id: 'contato', label: 'Contato' }] : []),
-            ].map(({ id, label }) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                onClick={(e) => { e.preventDefault(); scrollToSection(id) }}
-              >
-                {label}
-              </a>
-            ))}
-            {SHOW_CONTACT && (
-              <a
-                className="nav-cta"
-                href="#contato"
-                onClick={(e) => { e.preventDefault(); scrollToSection('contato') }}
-              >
-                Fale conosco
-              </a>
-            )}
-          </nav>
+        <nav aria-label="Principal" className="hidden items-center gap-1 md:flex">
+          {NAV_LINKS.map(({ id, label }) => (
+            <Link
+              key={id}
+              to={{ pathname: '/', hash: id }}
+              className="rounded-full px-3.5 py-2 text-sm font-medium text-muted transition hover:bg-primary-light hover:text-primary"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
 
+        <div className="flex items-center gap-2">
           <button
-            className="theme-toggle"
+            type="button"
             onClick={toggle}
-            aria-label={theme === 'dark' ? 'Modo claro' : 'Modo escuro'}
+            aria-label="Alternar tema claro e escuro"
+            className="flex size-10 items-center justify-center rounded-full border border-border text-muted transition hover:border-primary/40 hover:text-primary"
           >
-            {theme === 'dark' ? (
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7zm0-2a1 1 0 0 0 1-1V2a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1zm0 16a1 1 0 0 0-1 1v2a1 1 0 0 0 2 0v-2a1 1 0 0 0-1-1zM4.22 5.64 2.81 4.22a1 1 0 0 0-1.41 1.41l1.41 1.42a1 1 0 1 0 1.41-1.41zm14.14 12.72 1.41 1.41a1 1 0 0 0 1.41-1.41l-1.41-1.41a1 1 0 0 0-1.41 1.41zM21 11h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 0-2zM4 12a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm13.66-7.78a1 1 0 0 0-1.41 0l-1.41 1.41a1 1 0 1 0 1.41 1.41l1.41-1.41a1 1 0 0 0 0-1.41zM6.34 17.66 4.93 19.07a1 1 0 1 0 1.41 1.41l1.41-1.41a1 1 0 1 0-1.41-1.41z"/>
-              </svg>
-            ) : (
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-              </svg>
-            )}
+            <Moon className="size-[18px] dark:hidden" />
+            <Sun className="hidden size-[18px] dark:block" />
           </button>
 
+          <Link to={{ pathname: '/', hash: 'contato' }} className={`${button.primary} hidden py-2.5! md:inline-flex`}>
+            Fale conosco
+          </Link>
+
           <button
-            className={`hamburger${menuOpen ? ' open' : ''}`}
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Menu"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            className="flex size-10 items-center justify-center rounded-full border border-border text-fg md:hidden"
           >
-            <span /><span /><span />
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <nav id="mobile-menu" aria-label="Menu móvel" className="border-t border-border px-6 pt-2 pb-6 md:hidden">
+          {NAV_LINKS.map(({ id, label }) => (
+            <Link
+              key={id}
+              to={{ pathname: '/', hash: id }}
+              className="block border-b border-border py-3.5 font-medium text-fg transition hover:text-primary"
+            >
+              {label}
+            </Link>
+          ))}
+          <Link to={{ pathname: '/', hash: 'contato' }} className={`${button.primary} mt-5 w-full`}>
+            Fale conosco
+          </Link>
+        </nav>
+      )}
     </header>
   )
 }

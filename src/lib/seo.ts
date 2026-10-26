@@ -1,11 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { projects } from '../data/projects'
-
-export const SITE_URL = 'https://rogabsolutions.com'
-export const SITE_NAME = 'Rogab Solutions'
-export const DEFAULT_DESCRIPTION =
-  'Fábrica de software sob medida: sites, apps mobile, sistemas web, IA e automação. Da ideia ao deploy, com foco em resultado e código de qualidade.'
+import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from './site'
 
 const OG_IMAGE = `${SITE_URL}/logo.png`
 
