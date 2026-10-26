@@ -11,6 +11,7 @@ export const EMAIL = 'rogabsolutions@gmail.com'
 export const NAV_LINKS = [
   { id: 'sobre', label: 'Sobre' },
   { id: 'servicos', label: 'Serviços' },
+  { id: 'processo', label: 'Processo' },
   { id: 'projetos', label: 'Projetos' },
   { id: 'contato', label: 'Contato' },
 ] as const

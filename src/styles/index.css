@@ -74,6 +74,10 @@
     @apply bg-bg font-sans text-fg antialiased;
   }
 
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
   ::selection {
     @apply bg-primary text-white;
   }
