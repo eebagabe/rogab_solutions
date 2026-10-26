@@ -37,7 +37,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-6">
-        <Link to="/" className="flex items-center gap-2.5 font-heading text-lg font-bold text-primary">
+        <Link to="/" className="flex items-center gap-2.5 font-heading text-lg font-bold whitespace-nowrap text-primary">
           <img src={logo} alt="" className="size-9 rounded-lg object-contain" />
           Rogab Solutions
         </Link>
@@ -65,7 +65,7 @@ export default function Header() {
             <Sun className="hidden size-[18px] dark:block" />
           </button>
 
-          <Link to={{ pathname: '/', hash: 'contato' }} className={`${button.primary} hidden py-2.5! md:inline-flex`}>
+          <Link to={{ pathname: '/', hash: 'contato' }} className={`${button.primary} py-2.5! max-md:hidden`}>
             Fale conosco
           </Link>
 
