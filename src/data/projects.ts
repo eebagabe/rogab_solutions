@@ -39,12 +39,12 @@ Os tutores agendam e realizam consultas online com veterinários, enquanto os pr
     shortDescription: "Site institucional de assessoria jurídica e contábil com foco em recuperação tributária e gestão empresarial.",
     category: "Site Institucional",
     url: "https://www.rlconsultoriaempresarial.com.br",
-    description: `A R&L Consultoria Empresarial é parceira estratégica de empresários que precisam de mais do que números — entrega apoio contábil, fiscal e judicial de ponta a ponta.
+    description: `A R&L Consultoria Empresarial é parceira estratégica de empresários que precisam de mais do que números: entrega apoio contábil, fiscal e judicial de ponta a ponta.
 Com mais de 3 anos de atuação e uma equipe de contadores e advogados especializados, a empresa já recuperou mais de R$ 20 milhões em tributos pagos indevidamente pelos seus clientes.
 O site institucional apresenta os serviços da empresa com clareza e autoridade, transmitindo credibilidade e facilitando o contato de novos clientes.`,
     tags: ["Consultoria", "Contabilidade", "Jurídico", "Tributário", "Landing Page"],
     techs: ["HTML", "CSS", "JavaScript"],
-    challenge: "Comunicar autoridade e confiança no mercado jurídico-contábil, destacando os diferenciais competitivos — como a recuperação de R$ 20 milhões em tributos — e convertendo visitantes em contatos qualificados.",
+    challenge: "Comunicar autoridade e confiança no mercado jurídico-contábil, destacando os diferenciais competitivos (como a recuperação de R$ 20 milhões em tributos) e convertendo visitantes em contatos qualificados.",
     images: [],
   },
   {
