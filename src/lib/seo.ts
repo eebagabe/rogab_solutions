@@ -1,16 +1,20 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { projects } from '../data/projects.js'
-
-export const SITE_URL = 'https://rogabsolutions.com'
-export const SITE_NAME = 'Rogab Solutions'
-export const DEFAULT_DESCRIPTION =
-  'Fábrica de software sob medida: sites, apps mobile, sistemas web, IA e automação. Da ideia ao deploy, com foco em resultado e código de qualidade.'
+import { projects } from '../data/projects'
+import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from './site'
 
 const OG_IMAGE = `${SITE_URL}/logo.png`
 
 /** Resolve título, descrição e caminho canônico de uma rota. */
 export function getMeta(pathname = '/') {
+  if (pathname.replace(/\/$/, '') === '/projetos') {
+    return {
+      title: `Projetos | ${SITE_NAME}`,
+      description: 'Conheça os projetos desenvolvidos pela Rogab Solutions: sites, plataformas web e soluções sob medida.',
+      path: '/projetos',
+      image: OG_IMAGE,
+    }
+  }
   if (pathname.startsWith('/projetos/')) {
     const slug = pathname.replace('/projetos/', '').replace(/\/$/, '')
     const project = projects.find((p) => p.slug === slug)
@@ -31,7 +35,7 @@ export function getMeta(pathname = '/') {
   }
 }
 
-function upsertMeta(attr, key, content) {
+function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`)
   if (!el) {
     el = document.createElement('meta')
@@ -41,7 +45,7 @@ function upsertMeta(attr, key, content) {
   el.setAttribute('content', content)
 }
 
-function upsertLink(rel, href) {
+function upsertLink(rel: string, href: string) {
   let el = document.head.querySelector(`link[rel="${rel}"]`)
   if (!el) {
     el = document.createElement('link')
