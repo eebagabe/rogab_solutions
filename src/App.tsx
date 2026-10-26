@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
-import AppRoutes from './AppRoutes.jsx'
-import { ThemeProvider } from './lib/theme.jsx'
+import AppRoutes from './AppRoutes'
+import { ThemeProvider } from './lib/theme'
 
 export default function App() {
   return (

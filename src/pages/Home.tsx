@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
-import { projects } from '../data/projects.js'
-import ProjectCard from '../components/ProjectCard.jsx'
+import { projects } from '../data/projects'
+import ProjectCard from '../components/ProjectCard'
 
 const SHOW_CONTACT = true
 const WHATSAPP_URL = 'https://wa.me/5582991828178'
@@ -42,7 +42,7 @@ const VALUES = [
 ]
 
 function useScrollAnimation() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLElement>(null)
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -69,10 +69,10 @@ function ServicesCarousel() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
   const [animating, setAnimating] = useState(false)
-  const timerRef = useRef(null)
+  const timerRef = useRef<ReturnType<typeof setInterval>>()
   const total = SERVICES.length
 
-  const goTo = useCallback((idx, wrap = true) => {
+  const goTo = useCallback((idx: number, wrap = true) => {
     if (animating) return
     setAnimating(true)
     const next = wrap ? (idx + total) % total : idx

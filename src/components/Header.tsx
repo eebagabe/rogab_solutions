@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import { useTheme } from '../lib/theme.jsx'
+import { useTheme } from '../lib/theme'
 
 const SHOW_CONTACT = true
 
@@ -22,7 +22,7 @@ export default function Header() {
     setMenuOpen(false)
   }, [location])
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     setMenuOpen(false)
     if (location.pathname !== '/') {
       navigate('/')

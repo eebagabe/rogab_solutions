@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useTheme } from '../lib/theme.jsx'
+import { useTheme } from '../lib/theme'
+import type { Project } from '../data/projects'
 
 const ACCENTS = [
   { bar: '#3a7ca5', iconBg: '#d6eaf8', iconBgDark: '#162d45', emoji: '💡' },
@@ -8,7 +9,7 @@ const ACCENTS = [
   { bar: '#e8a020', iconBg: '#fdf3d9', iconBgDark: '#3d2c08', emoji: '🎓' },
 ]
 
-export default function ProjectCard({ project, index }) {
+export default function ProjectCard({ project, index }: { project: Project; index: number }) {
   const accent = ACCENTS[index % ACCENTS.length]
   const { theme } = useTheme()
 

@@ -1,14 +1,21 @@
 import { useState, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import type { ProjectImage } from '../data/projects'
 
-function Lightbox({ images, startIndex, onClose }) {
+interface LightboxProps {
+  images: ProjectImage[]
+  startIndex: number
+  onClose: () => void
+}
+
+function Lightbox({ images, startIndex, onClose }: LightboxProps) {
   const [current, setCurrent] = useState(startIndex)
 
   const prev = useCallback(() => setCurrent((i) => (i - 1 + images.length) % images.length), [images.length])
   const next = useCallback(() => setCurrent((i) => (i + 1) % images.length), [images.length])
 
   useEffect(() => {
-    const onKey = (e) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape')     onClose()
       if (e.key === 'ArrowLeft')  prev()
       if (e.key === 'ArrowRight') next()
@@ -51,8 +58,8 @@ function Lightbox({ images, startIndex, onClose }) {
   )
 }
 
-export default function ImageGallery({ images, accentColor }) {
-  const [lightboxIndex, setLightboxIndex] = useState(null)
+export default function ImageGallery({ images, accentColor }: { images: ProjectImage[]; accentColor: string }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
   if (!images?.length) return null
 

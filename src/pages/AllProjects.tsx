@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { projects } from '../data/projects.js'
-import ProjectCard from '../components/ProjectCard.jsx'
+import { projects } from '../data/projects'
+import ProjectCard from '../components/ProjectCard'
 
 export default function AllProjects() {
   useEffect(() => {

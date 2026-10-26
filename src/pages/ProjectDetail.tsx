@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
-import { projects } from '../data/projects.js'
-import ImageGallery from '../components/ImageGallery.jsx'
-import { useTheme } from '../lib/theme.jsx'
+import { projects } from '../data/projects'
+import ImageGallery from '../components/ImageGallery'
+import { useTheme } from '../lib/theme'
 
 const SHOW_CONTACT = true
 const WHATSAPP_URL = 'https://wa.me/5582991828178'

@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { projects } from '../data/projects.js'
+import { projects } from '../data/projects'
 
 export const SITE_URL = 'https://rogabsolutions.com'
 export const SITE_NAME = 'Rogab Solutions'
@@ -31,7 +31,7 @@ export function getMeta(pathname = '/') {
   }
 }
 
-function upsertMeta(attr, key, content) {
+function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`)
   if (!el) {
     el = document.createElement('meta')
@@ -41,7 +41,7 @@ function upsertMeta(attr, key, content) {
   el.setAttribute('content', content)
 }
 
-function upsertLink(rel, href) {
+function upsertLink(rel: string, href: string) {
   let el = document.head.querySelector(`link[rel="${rel}"]`)
   if (!el) {
     el = document.createElement('link')

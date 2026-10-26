@@ -1,4 +1,23 @@
-export const projects = [
+export interface ProjectImage {
+  src: string
+  label: string
+}
+
+export interface Project {
+  slug: string
+  name: string
+  icon?: string
+  shortDescription: string
+  category: string
+  url?: string
+  description: string
+  tags: string[]
+  techs: string[]
+  challenge: string
+  images: ProjectImage[]
+}
+
+export const projects: Project[] = [
   {
     slug: "conectavet",
     name: "ConectaVet",

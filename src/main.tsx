@@ -1,13 +1,13 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-import App from './App.jsx'
+import App from './App'
 import './styles/global.css'
 
-const root = document.getElementById('root')
+const root = document.getElementById('root')!
 const app = (
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>
+  </StrictMode>
 )
 
 // Páginas pré-renderizadas (SSG) já têm HTML: hidrata. Caso contrário, monta do zero.

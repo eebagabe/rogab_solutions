@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import Header from './components/Header.jsx'
-import Footer from './components/Footer.jsx'
-import Home from './pages/Home.jsx'
-import ProjectDetail from './pages/ProjectDetail.jsx'
-import AllProjects from './pages/AllProjects.jsx'
-import { useSeo } from './lib/seo.js'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import Home from './pages/Home'
+import ProjectDetail from './pages/ProjectDetail'
+import AllProjects from './pages/AllProjects'
+import { useSeo } from './lib/seo'
 
 const WHATSAPP_URL = 'https://wa.me/5582991828178'
 
